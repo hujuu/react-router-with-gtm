@@ -1,4 +1,13 @@
-export default function Root() {
+import {useEffect} from "react";
+import {useLocation} from "react-router-dom";
+
+// eslint-disable-next-line react/prop-types
+export default function Root({title}) {
+    const location = useLocation();
+
+    useEffect(() => {
+        document.title = title;
+    }, [title, location]);
     return (
         <>
             <div id="sidebar">
@@ -24,12 +33,15 @@ export default function Root() {
                     </form>
                     <form method="post">
                         <button type="submit">New</button>
+                        <button onClick={()=>{window.dataLayer.push({'event': 'buyNow'})}}>
+                            Buy Now
+                        </button>
                     </form>
                 </div>
                 <nav>
                     <ul>
                         <li>
-                            <a href={`/contacts/1`}>Your Name</a>
+                            <a className="contact-name" href={`/contacts/1`}>Your Name</a>
                         </li>
                         <li>
                             <a href={`/contacts/2`}>Your Friend</a>
