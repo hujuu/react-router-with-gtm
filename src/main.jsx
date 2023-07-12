@@ -12,7 +12,9 @@ import TagManager from 'react-gtm-module';
 import './index.css'
 
 const tagManagerArgs = {
-    gtmId: 'GTM-NV8BP88'    // replace this with your GTM ID
+    gtmId: 'GTM-NV8BP88',
+
+    dataLayerName: 'PageDataLayer'
 }
 
 TagManager.initialize(tagManagerArgs)

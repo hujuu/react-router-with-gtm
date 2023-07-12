@@ -1,5 +1,16 @@
 import {useEffect} from "react";
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+    dataLayer: {
+        user_id: '001',
+        userProject: 'project',
+        page: 'home'
+    },
+    dataLayerName: 'PageDataLayer'
+}
+TagManager.dataLayer(tagManagerArgs)
 
 // eslint-disable-next-line react/prop-types
 export default function Root({title}) {
@@ -36,6 +47,15 @@ export default function Root({title}) {
                         <button onClick={()=>{window.dataLayer.push({'event': 'buyNow'})}}>
                             Buy Now
                         </button>
+                        <Link to={`/contacts/1`} onClick={()=>{window.dataLayer.push({'event': {action: 'purchase', category: 'ecommerce', value: 10}})}}>
+                            リンク
+                        </Link>
+                        <Link to={`/contacts/1`} onClick={()=>{window.dataLayer.push({user_id: '001'})}}>
+                            イベント
+                        </Link>
+                        <Link to={`/contacts/1`} onClick={()=>{window.dataLayer.push({action: 'purchase', category: 'ecommerce', value: 10})}}>
+                            購入
+                        </Link>
                     </form>
                 </div>
                 <nav>
